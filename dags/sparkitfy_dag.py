@@ -24,8 +24,7 @@ default_args = {
 
 dag = DAG(
     'sparkify_dag',
-    default_args = default_args,
-    start_date = datetime.datetime.now()
+    default_args = default_args
 )
 
 f= open(os.path.join(conf.get('core','dags_folder'),'create_tables.sql'))
