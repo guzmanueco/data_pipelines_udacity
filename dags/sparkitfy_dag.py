@@ -19,7 +19,7 @@ default_args = {
     'retries': 3,
     'retry_delay': timedelta(minutes=5),
     'catchup': False,
-    'schedule_interval':'hourly'
+    'schedule_interval':'@hourly'
 
 }
 
@@ -119,7 +119,6 @@ run_quality_checks = DataQualityOperator(
 end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
 start_operator  \
-    >> create_trips_table \
     >> [stage_events_to_redshift, stage_songs_to_redshift] \
     >> load_songplays_table \
     >> [ load_songs_table, load_artists_table, load_time_table, load_users_table] \
